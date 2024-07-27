@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPlace } from '../reducers/user';
+import { addPlace, resetPlace } from '../reducers/user';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
@@ -28,6 +28,8 @@ export default function MapScreen() {
           });
       }
     })();
+
+    dispatch(resetPlace());
 
     fetch(`${link}/places/${user.nickname}`).then(response => response.json())
       .then(data => {

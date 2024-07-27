@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPlace, removePlace } from '../reducers/user';
+import { addPlace, removePlace, resetPlace } from '../reducers/user';
 
 const link = process.env.EXPO_PUBLIC_BACK_LINK
 
@@ -21,6 +21,8 @@ export default function PlacesScreen() {
   const [city, setCity] = useState('');
 
   useEffect(() => {
+
+    dispatch(resetPlace());
 
     //Appel de la route GET
     fetch(`${link}/places/${user.nickname}`).then(response => response.json())
